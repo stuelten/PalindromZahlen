@@ -1,12 +1,12 @@
 # PalindromZahlen
 
-Suche Palindrom-Zahlen.
+Suche "Palindrom-Zahlen",
+das heißt Zahlen, die addiert mit ihrer Spiegelzahl von vorne wie von hinten gleich sind.
 
 ## Rechenregel
 
-Sucht zu einer Zahl ihre Palindrom-Zahl
-(Zahlen, die von vorne wie von hinten gleich sind, beispielsweise 1221, 1234321, ...),
-indem zur Zahl ihre Spiegelzahl addiert wird.
+Suche zu einer Zahl ihre Palindrom-Zahl,
+indem du zur Basiszahl ihre Spiegelzahl addierst.
 
         Beispiel:
 
