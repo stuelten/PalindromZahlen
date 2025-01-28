@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Timo Stülten (pionira GmbH)
+ * Copyright 2025 Timo Stülten
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.sty;
+
+import de.sty.PalindromGrosseZahl;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PalindromZahlCommand {
+public class PalindromZahl {
 
     BigInteger anfangsZahl;
     BigInteger endZahl;
 
-    PalindromZahlCommand(BigInteger anfangsZahl, BigInteger endZahl) {
+    PalindromZahl(BigInteger anfangsZahl, BigInteger endZahl) {
         this.anfangsZahl = anfangsZahl;
         this.endZahl = endZahl;
     }
@@ -32,7 +33,7 @@ public class PalindromZahlCommand {
     public static void main(String[] args) {
         BigInteger anfangsZahl = null;
         BigInteger endZahl = null;
-        PalindromZahlCommand kommando;
+        PalindromZahl kommando;
 
         if (args.length < 1 || args.length > 2) {
             hilfeAusgeben();
@@ -53,7 +54,7 @@ public class PalindromZahlCommand {
             System.exit(2);
         }
 
-        kommando = new PalindromZahlCommand(anfangsZahl, endZahl);
+        kommando = new PalindromZahl(anfangsZahl, endZahl);
         kommando.berechne();
     }
 
@@ -65,13 +66,13 @@ public class PalindromZahlCommand {
                 PalindromZahlCommand <Startzahl> [<Endzahl>]
                 
                 Es werden die PalindromZahlen zu allen Zahlen zwischen <Startzahl> und <Endzahl> berechnet.
-                <Endzahl> ist optional. Ist sie entfallen, dann erfolgt die Berechnung nur für <Startzahl>. 
+                <Endzahl> ist optional. Ist sie entfallen, dann erfolgt die Berechnung nur für <Startzahl>.
                 """);
     }
 
     void berechne() {
         long zahlenOhneLoesung = 0;
-        List<BigInteger> zahlenOhneLoesungListe = new ArrayList<BigInteger>();
+        List<BigInteger> zahlenOhneLoesungListe = new ArrayList<>();
         long maximaleSchritte = 0;
         BigInteger zahlMitMaxSchritten = null;
 

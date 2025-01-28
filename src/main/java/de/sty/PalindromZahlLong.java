@@ -3,7 +3,7 @@ package de.sty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PalindromZahl {
+public class PalindromZahlLong {
 
     public static long umkehrZahl(long quellZahl) {
         long gedreht = 0;

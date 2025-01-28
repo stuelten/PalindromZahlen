@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024 Timo Stülten (pionira GmbH)
+# Copyright 2025 Timo Stülten (pionira GmbH)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,20 +16,20 @@
 
 if [ "$1" == "-q" ] || [ "$1" == "--quiet" ]; then
   MVN_OPTIONS=--quiet
+  shift
 fi
 
 # Setup for macOS
 if [ "Darwin" == "$(uname -s)" ]; then
-  GRAALVM_HOME="$(/usr/libexec/java_home -v 21 | grep graal)"
-  export GRAALVM_HOME
-  export JAVA_HOME=${GRAALVM_HOME}
-fi
-
-if ("${JAVA_HOME}"/bin/javac -version >/dev/null); then
-  echo "Use Java from ${JAVA_HOME}"
-else
-  echo "Error calling javac. Abort"
-  exit 1
+  if [ ! -d "${GRAALVM_HOME}" ]; then
+    GRAALVM_HOME="$(/usr/libexec/java_home -v 21 | grep graal)"
+  fi
+  # use Graal if available
+  if [ -n "${GRAALVM_HOME}" ]; then
+    echo "Using GraalVM from $GRAALVM_HOME"
+    export GRAALVM_HOME
+    export JAVA_HOME=${GRAALVM_HOME}
+  fi
 fi
 
 echo "Build Uber-JAR"
