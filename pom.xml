@@ -73,46 +73,26 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <!-- Ein native binary bauen, dass auch ohne JRE läuft -->
+                <groupId>org.graalvm.nativeimage</groupId>
+                <artifactId>native-image-maven-plugin</artifactId>
+                <version>21.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>native-image</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Yes, it is in the root package -->
+                    <mainClass>PalindromZahl</mainClass>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <!-- Wenn GraalVM genutzt wird, ein native binary bauen, dass auch ohne JRE läuft -->
-            <id>native-image-compatible</id>
-            <activation>
-                <!-- Detect GraalVM -->
-                <property>
-                    <name>java.vendor</name>
-                    <value>Oracle Corporation</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.graalvm.nativeimage</groupId>
-                        <artifactId>native-image-maven-plugin</artifactId>
-                        <version>21.2.0</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>native-image</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <buildArgs>
-                                <arg>-Ob</arg>
-                                <arg>-march=native</arg>
-                            </buildArgs>
-                            <!-- Yes, it is in the root package -->
-                            <mainClass>PalindromZahl</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <scm>
         <url>https://github.com/stuelten/PalindromZahlen.git</url>
